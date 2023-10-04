@@ -824,14 +824,14 @@ class Connection implements ConnectionInterface
      * @param  int|null  $count
      * @return void
      */
-    public function logQuery($query, $bindings, $time = null, $count = null)
+    public function logQuery($query, $bindings, $time = null, $rowsCount = null)
     {
         $this->totalQueryDuration += $time ?? 0.0;
 
-        $this->event(new QueryExecuted($query, $bindings, $time, $this, $count));
+        $this->event(new QueryExecuted($query, $bindings, $time, $this, $rowsCount));
 
         if ($this->loggingQueries) {
-            $this->queryLog[] = compact('query', 'bindings', 'time', 'count');
+            $this->queryLog[] = compact('query', 'bindings', 'time', 'rowsCount');
         }
     }
 

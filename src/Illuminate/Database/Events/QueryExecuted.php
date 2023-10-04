@@ -42,9 +42,9 @@ class QueryExecuted
     /**
      * The affected row count.
      *
-     * @var int
+     * @var int|null
      */
-    public $count;
+    public $rowsCount;
 
     /**
      * Create a new event instance.
@@ -56,13 +56,13 @@ class QueryExecuted
      * @param  int|null  $count
      * @return void
      */
-    public function __construct($sql, $bindings, $time, $connection, $count)
+    public function __construct($sql, $bindings, $time, $connection, $rowsCount = null)
     {
         $this->sql = $sql;
         $this->time = $time;
         $this->bindings = $bindings;
         $this->connection = $connection;
         $this->connectionName = $connection->getName();
-        $this->count = $count;
+        $this->rowsCount = $rowsCount;
     }
 }
